@@ -19,7 +19,7 @@ public class GildedRose {
             if items[i].name != agedBrie && items[i].name != backStagePasses {
                 if items[i].quality > 0 {
                     if items[i].name != sulfurasHandOfRagnaros {
-                        items[i].quality = items[i].quality - 1
+                        items[i].quality -= 1  
                     }
                 }
             } else {
@@ -51,7 +51,7 @@ public class GildedRose {
                     if items[i].name != backStagePasses {
                         if items[i].quality > 0 {
                             if items[i].name != sulfurasHandOfRagnaros {
-                                items[i].quality = items[i].quality - 1
+                                items[i].quality -= 1
                             }
                         }
                     } else {
