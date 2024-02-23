@@ -20,11 +20,9 @@ public class GildedRose {
             let itemName = items[i].name
             
             if itemName != agedBrie && itemName != backStagePasses {
-                if items[i].quality > 0 {
-                    if itemName != sulfurasHandOfRagnaros {
-                        items[i].quality -= 1
-                    }
-                }
+           
+                decreaseQuality(&items[i], itemName: itemName)
+            
             } else {
                 
                 if items[i].quality < 50 {
@@ -49,12 +47,10 @@ public class GildedRose {
             
             if items[i].sellIn < 0 {
                 if itemName != agedBrie {
+                    
                     if itemName != backStagePasses {
-                        if items[i].quality > 0 {
-                            if itemName != sulfurasHandOfRagnaros {
-                                items[i].quality -= 1
-                            }
-                        }
+                        decreaseQuality(&items[i], itemName: itemName)
+                        
                     } else {
                         items[i].quality -= items[i].quality
                         
@@ -68,11 +64,25 @@ public class GildedRose {
         return items
     }
     
+    //MARK: Functions Sections
     
+    // The Function below increases the quality by 1 if the item is less than the 50 which is the max.
     private static func increaseQuality (_ item: inout Item) {
         
         if item.quality < 50 {
             item.quality += 1
+        }
+    }
+    
+    // The Function below decreases the quality by 1 if the quaility of the item is greater than the 0  which is the lowest quality can get
+    // And also if the item is not sulfurasHandOfRagnaros, which never decreases in quality
+    
+    private static func decreaseQuality (_ item: inout Item, itemName: String) {
+        
+        if item.quality > 0 {
+            if itemName != sulfurasHandOfRagnaros {
+                item.quality -= 1
+            }
         }
     }
 }
