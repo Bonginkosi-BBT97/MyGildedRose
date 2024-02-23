@@ -19,23 +19,23 @@ public class GildedRose {
             if items[i].name != agedBrie && items[i].name != backStagePasses {
                 if items[i].quality > 0 {
                     if items[i].name != sulfurasHandOfRagnaros {
-                        items[i].quality -= 1  
+                        items[i].quality -= 1
                     }
                 }
             } else {
                 if items[i].quality < 50 {
-                    items[i].quality = items[i].quality + 1
+                    items[i].quality += 1
                     
                     if items[i].name == backStagePasses {
                         if items[i].sellIn < 11 {
                             if items[i].quality < 50 {
-                                items[i].quality = items[i].quality + 1
+                                items[i].quality += 1
                             }
                         }
                         
                         if items[i].sellIn < 6 {
                             if items[i].quality < 50 {
-                                items[i].quality = items[i].quality + 1
+                                items[i].quality += 1
                             }
                         }
                     }
@@ -59,7 +59,7 @@ public class GildedRose {
                     }
                 } else {
                     if items[i].quality < 50 {
-                        items[i].quality = items[i].quality + 1
+                        items[i].quality += 1
                     }
                 }
             }
