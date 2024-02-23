@@ -26,20 +26,17 @@ public class GildedRose {
                     }
                 }
             } else {
+                
                 if items[i].quality < 50 {
                     items[i].quality += 1
                     
                     if itemName == backStagePasses {
                         if items[i].sellIn < 11 {
-                            if items[i].quality < 50 {
-                                items[i].quality += 1
-                            }
+                            increaseQuality(&items[i])
                         }
                         
                         if items[i].sellIn < 6 {
-                            if items[i].quality < 50 {
-                                items[i].quality += 1
-                            }
+                            increaseQuality(&items[i])
                         }
                     }
                 }
@@ -63,9 +60,7 @@ public class GildedRose {
                         
                     }
                 } else {
-                    if items[i].quality < 50 {
-                        items[i].quality += 1
-                    }
+                    increaseQuality(&items[i])
                 }
             }
         }
@@ -73,4 +68,11 @@ public class GildedRose {
         return items
     }
     
+    
+    private static func increaseQuality (_ item: inout Item) {
+        
+        if item.quality < 50 {
+            item.quality += 1
+        }
+    }
 }
