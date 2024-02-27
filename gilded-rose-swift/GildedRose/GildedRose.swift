@@ -25,19 +25,7 @@ public class GildedRose {
             
             } else {
                 
-                if items[i].quality < 50 {
-                    items[i].quality += 1
-                    
-                    if itemName == backStagePasses {
-                        if items[i].sellIn < 11 {
-                            increaseQuality(&items[i])
-                        }
-                        
-                        if items[i].sellIn < 6 {
-                            increaseQuality(&items[i])
-                        }
-                    }
-                }
+               increaseQualityForBackStagePasses(&items[i], itemName: itemName)
             }
             
             if itemName != sulfurasHandOfRagnaros {
@@ -85,4 +73,26 @@ public class GildedRose {
             }
         }
     }
+    
+    
+    //This function needs to increase the quality for back stage passes
+    
+    private static func increaseQualityForBackStagePasses (_ item: inout Item, itemName: String) {
+        
+        if item.quality < 50 {
+            item.quality += 1
+            
+            if itemName == backStagePasses {
+                if item.sellIn < 11 {
+                    increaseQuality(&item)
+                }
+                
+                if item.sellIn < 6 {
+                    increaseQuality(&item)
+                }
+            }
+        }
+    }
+    
+    
 }
