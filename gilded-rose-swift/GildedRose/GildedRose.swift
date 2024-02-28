@@ -19,6 +19,7 @@ public class GildedRose {
             
             let itemName = items[i].name
             
+             // decreaseQuailtyForNonSpecialItems()
             if itemName != agedBrie && itemName != backStagePasses {
            
                 decreaseQuality(&items[i], itemName: itemName)
@@ -28,31 +29,39 @@ public class GildedRose {
                increaseQualityForBackStagePasses(&items[i], itemName: itemName)
             }
             
+            // decreaseSellInIfNotSulfurasHandOfRagnaros ()
             if itemName != sulfurasHandOfRagnaros {
              
                 items[i].sellIn -= 1
             }
             
+            //updateQualityIfSellInDateHasPassed()
             if items[i].sellIn < 0 {
-                if itemName != agedBrie {
-                    
-                    if itemName != backStagePasses {
-                        decreaseQuality(&items[i], itemName: itemName)
-                        
-                    } else {
-                        items[i].quality -= items[i].quality
-                        
-                    }
-                } else {
-                    increaseQuality(&items[i])
-                }
+                sellInDateHasPassed(&items[i], itemName: itemName)
             }
         }
         
         return items
     }
     
-    //MARK: Functions Sections
+    //MARK: --- FUNCTIONS SECTION ---
+    
+    //MARK: Functions that check what item it is
+    
+    private static func decreaseQuailtyForNonSpecialItems() {
+        
+    }
+    
+    
+    private static func decreaseSellInIfNotSulfurasHandOfRagnaros () {
+        
+    }
+    
+    private static func updateQualityIfSellInDateHasPassed() {
+        
+    }
+    
+     //MARK: Functions that update quaility
     
     // The Function below increases the quality by 1 if the item is less than the 50 which is the max.
     private static func increaseQuality (_ item: inout Item) {
@@ -94,5 +103,20 @@ public class GildedRose {
         }
     }
     
-    
+    // This function has to decrease the quality of the item when the sell in date has passed, but it needs to increase the quality for agedBrie and Backstage passes.
+    private static func sellInDateHasPassed(_ item: inout Item, itemName: String) {
+        
+        if itemName != agedBrie {
+            
+            if itemName != backStagePasses {
+                decreaseQuality(&item, itemName: itemName)
+                
+            } else {
+                item.quality -= item.quality
+            }
+            
+        } else {
+            increaseQuality(&item)
+        }
+    }
 }
