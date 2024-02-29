@@ -23,51 +23,51 @@ public class GildedRose {
             
             decreaseQuailtyForNonSpecialItems(&items[i], itemName: itemName)
             
-        //2. Next, decrease the quality if the item is not SulfurasHandOfRagnaros
+        //2. Next, decrease the Sellin date if the item is not SulfurasHandOfRagnaros
             
             decreaseSellInIfNotSulfurasHandOfRagnaros(&items[i], itemName: itemName)
             
         //3. Lastly, update quality if the sellIn date has passed for non special items
-            
+            updateQualityIfSellInDateHasPassed(&items[i], itemName: itemName)
            
-            //updateQualityIfSellInDateHasPassed()
-            if items[i].sellIn < 0 {
-                sellInDateHasPassed(&items[i], itemName: itemName)
-            }
         }
         
         return items
     }
     
+    
     //MARK: --- FUNCTIONS SECTION ---
     
-    //MARK: Functions that check what item it is
+    //MARK: Functions that check what update the items quality and sell in date based on the item
     
     // This function decreases the quality of the item if the item is not a special item (AgedBrie & BackstagePasses)
     private static func decreaseQuailtyForNonSpecialItems(_ item: inout Item, itemName: String) {
         
         if itemName != agedBrie && itemName != backStagePasses {
-       
             decreaseQuality(&item, itemName: itemName)
         
         } else {
-            
            increaseQualityForBackStagePasses(&item, itemName: itemName)
         }
     }
     
-    //This function decreases the quality if the item is not SulfurasHandOfRagnaros
+    //This function decreases the sellIn date if the item is not SulfurasHandOfRagnaros
     
     private static func decreaseSellInIfNotSulfurasHandOfRagnaros(_ item: inout Item, itemName: String) {
+        
         if itemName != sulfurasHandOfRagnaros {
-         
             item.sellIn -= 1
         }
     }
     
-    private static func updateQualityIfSellInDateHasPassed() {
+   // This function updates quality if the sellIn date has passed for non special items
+    private static func updateQualityIfSellInDateHasPassed(_ item: inout Item, itemName: String) {
         
+        if item.sellIn < 0 {
+            sellInDateHasPassed(&item, itemName: itemName)
+        }
     }
+    
     
      //MARK: Functions that update quaility
     
@@ -75,7 +75,7 @@ public class GildedRose {
     private static func increaseQuality (_ item: inout Item) {
         
         if item.quality < 50 {
-            item.quality += 1
+           item.quality += 1
         }
     }
     
