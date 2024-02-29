@@ -19,22 +19,17 @@ public class GildedRose {
             
             let itemName = items[i].name
             
-             // decreaseQuailtyForNonSpecialItems()
-            if itemName != agedBrie && itemName != backStagePasses {
+        //1. First decrease the quality for non special items (Age Brie and Backstage Passes)
+            
+            decreaseQuailtyForNonSpecialItems(&items[i], itemName: itemName)
+            
+        //2. Next, decrease the quality if the item is not SulfurasHandOfRagnaros
+            
+            decreaseSellInIfNotSulfurasHandOfRagnaros(&items[i], itemName: itemName)
+            
+        //3. Lastly, update quality if the sellIn date has passed for non special items
+            
            
-                decreaseQuality(&items[i], itemName: itemName)
-            
-            } else {
-                
-               increaseQualityForBackStagePasses(&items[i], itemName: itemName)
-            }
-            
-            // decreaseSellInIfNotSulfurasHandOfRagnaros ()
-            if itemName != sulfurasHandOfRagnaros {
-             
-                items[i].sellIn -= 1
-            }
-            
             //updateQualityIfSellInDateHasPassed()
             if items[i].sellIn < 0 {
                 sellInDateHasPassed(&items[i], itemName: itemName)
@@ -48,13 +43,26 @@ public class GildedRose {
     
     //MARK: Functions that check what item it is
     
-    private static func decreaseQuailtyForNonSpecialItems() {
+    // This function decreases the quality of the item if the item is not a special item (AgedBrie & BackstagePasses)
+    private static func decreaseQuailtyForNonSpecialItems(_ item: inout Item, itemName: String) {
         
+        if itemName != agedBrie && itemName != backStagePasses {
+       
+            decreaseQuality(&item, itemName: itemName)
+        
+        } else {
+            
+           increaseQualityForBackStagePasses(&item, itemName: itemName)
+        }
     }
     
+    //This function decreases the quality if the item is not SulfurasHandOfRagnaros
     
-    private static func decreaseSellInIfNotSulfurasHandOfRagnaros () {
-        
+    private static func decreaseSellInIfNotSulfurasHandOfRagnaros(_ item: inout Item, itemName: String) {
+        if itemName != sulfurasHandOfRagnaros {
+         
+            item.sellIn -= 1
+        }
     }
     
     private static func updateQualityIfSellInDateHasPassed() {
