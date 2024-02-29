@@ -28,6 +28,7 @@ public class GildedRose {
             decreaseSellInIfNotSulfurasHandOfRagnaros(&items[i], itemName: itemName)
             
         //3. Lastly, update quality if the sellIn date has passed for non special items
+            
             updateQualityIfSellInDateHasPassed(&items[i], itemName: itemName)
            
         }
