@@ -56,10 +56,10 @@ extension GildedRose {
     
     private static func decreaseQuality (_ item: inout Item, itemName: String) {
         
-        if item.quality > 0 {
-            if itemName != sulfurasHandOfRagnaros {
-                item.quality -= 1
-            }
+        guard item.quality > 0 else { return}
+        
+        if itemName != sulfurasHandOfRagnaros {
+            item.quality -= 1
         }
     }
     
@@ -68,14 +68,12 @@ extension GildedRose {
     
     private static func increaseQualityForBackStagePasses (_ item: inout Item, itemName: String) {
         
-        if item.quality < 50 {
-            item.quality += 1
-            
-            if itemName == backStagePasses {
-                if item.sellIn < 11 {
-                    increaseQuality(&item)
-                }
-                
+        guard item.quality < 50 else { return}
+        item.quality += 1
+        
+        if itemName == backStagePasses {
+            if item.sellIn < 11 {
+                increaseQuality(&item)
                 if item.sellIn < 6 {
                     increaseQuality(&item)
                 }
@@ -86,17 +84,15 @@ extension GildedRose {
     // This function has to decrease the quality of the item when the sell in date has passed, but it needs to increase the quality for agedBrie and Backstage passes.
     private static func sellInDateHasPassed(_ item: inout Item, itemName: String) {
         
-        if itemName != agedBrie {
-            
-            if itemName != backStagePasses {
-                decreaseQuality(&item, itemName: itemName)
-                
-            } else {
-                item.quality -= item.quality
-            }
-            
-        } else {
-            increaseQuality(&item)
+        
+        guard itemName != agedBrie else {
+            return  increaseQuality(&item)
         }
+        
+        guard itemName != backStagePasses else {
+            return item.quality -= item.quality
+        }
+        
+        decreaseQuality(&item, itemName: itemName)
     }
 }
