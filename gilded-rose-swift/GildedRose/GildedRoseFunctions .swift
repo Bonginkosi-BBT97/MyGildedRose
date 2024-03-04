@@ -90,11 +90,10 @@ extension GildedRose {
             return  increaseQuality(&item)
         }
         
-        if itemName != backStagePasses {
-            decreaseQuality(&item, itemName: itemName)
-            
-        } else {
-            item.quality -= item.quality
+        guard itemName != backStagePasses else {
+            return item.quality -= item.quality
         }
+        
+        decreaseQuality(&item, itemName: itemName)
     }
 }
