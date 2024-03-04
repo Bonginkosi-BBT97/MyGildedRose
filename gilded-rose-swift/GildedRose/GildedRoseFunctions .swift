@@ -69,15 +69,14 @@ extension GildedRose {
     private static func increaseQualityForBackStagePasses (_ item: inout Item, itemName: String) {
         
         guard item.quality < 50 else { return}
-            item.quality += 1
-            
-            if itemName == backStagePasses {
-                if item.sellIn < 11 {
-                    increaseQuality(&item)
-                }
-                
+        item.quality += 1
+        
+        if itemName == backStagePasses {
+            if item.sellIn < 11 {
+                increaseQuality(&item)
                 if item.sellIn < 6 {
                     increaseQuality(&item)
+                }
             }
         }
     }
@@ -85,7 +84,7 @@ extension GildedRose {
     // This function has to decrease the quality of the item when the sell in date has passed, but it needs to increase the quality for agedBrie and Backstage passes.
     private static func sellInDateHasPassed(_ item: inout Item, itemName: String) {
         
-     
+        
         guard itemName != agedBrie else {
             return  increaseQuality(&item)
         }
