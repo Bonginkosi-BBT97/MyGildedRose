@@ -11,6 +11,7 @@ public class GildedRose {
    static let agedBrie = "Aged Brie"
    static let backStagePasses = "Backstage passes to a TAFKAL80ETC concert"
    static let sulfurasHandOfRagnaros = "Sulfuras, Hand of Ragnaros"
+   static let conjuredManaCake = "Conjured Mana Cake"
     
     public static func updateQuality(_ items: Array<Item>) -> [Item] {
         var items = items
