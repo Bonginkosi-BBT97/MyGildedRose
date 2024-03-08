@@ -28,7 +28,9 @@ public class GildedRose {
             
             decreaseSellInIfNotSulfurasHandOfRagnaros(&items[i], itemName: itemName)
             
-        //3. Lastly, update quality if the sellIn date has passed for non special items
+        //3. decrease the Quality for the newly added Conjured Mana Cake item
+            
+        //4. Lastly, update quality if the sellIn date has passed for non special items
             
             updateQualityIfSellInDateHasPassed(&items[i], itemName: itemName)
            
