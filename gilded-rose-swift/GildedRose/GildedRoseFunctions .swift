@@ -72,12 +72,11 @@ extension GildedRose {
         item.quality += 1
         
         if itemName == backStagePasses {
-            if item.sellIn < 11 {
-                increaseQuality(&item)
-                if item.sellIn < 6 {
-                    increaseQuality(&item)
-                }
-            }
+            guard item.sellIn < 11 else {return}
+            increaseQuality(&item)
+            
+            guard item.sellIn < 6 else {return}
+            increaseQuality(&item)
         }
     }
     
